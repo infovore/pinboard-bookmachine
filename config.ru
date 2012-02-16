@@ -2,7 +2,7 @@
 require "rubygems"
 require "bundler/setup"
 require "sinatra"
-require "sinatra/sequel"
+require "sinatra/activerecord"
 require "haml"
 require "bookmachine"
 

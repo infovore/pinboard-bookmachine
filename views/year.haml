@@ -1,0 +1,63 @@
+- content_for :title do
+  A Year of Links: #{@year}
+
+
+- @previous_tags = []
+
+#pre_front
+  %h2 A Year of Links: #{@year}
+
+#colophon
+  %p 
+    &copy; 2004-#{Time.now.year} Tom Armitage
+    %br
+    Set in Minion Pro and Helvetica Neue Light.
+    Data extracted from Pinboard.
+    %br
+    http://pinboard.in/u:infovore
+
+#cover
+  %h1 A Year of Links: #{@year}
+  %h2 Tom Armitage
+  %h3 Volume #{volume_number_for_year(@year)}
+
+#toc
+  %h2 Contents
+  %ul.contents
+    -@bookmarks_by_month.each do |month, collection|
+      %li= link_to month, "##{mark_hash(month)}"
+
+- @bookmarks_by_month.each do |month, collection|
+  - if collection.any?
+    %h2.month
+      %a{:name => mark_hash(month)}
+      = month
+    .month_collection
+      - collection.group_by(&:day).each do |day, day_collection|
+        - if day_collection.any?
+          .day_container
+            %h3.day= format_date(day_collection.first.bookmarked_at)
+            %ul.bookmarks
+              - for bookmark in day_collection
+                %li.bookmark
+                  .qr= image_tag(bookmark.qr_for_url)
+                  .bookmark_itself
+                    %h4= bookmark.description
+                    .href= bookmark.href
+                    .desc= bookmark.extended
+                    .tags 
+                      -output = []
+                      - bookmark.tags.each do |t|
+                        - unique_id, new_previous_tags = id_for_tag(t.name, @previous_tags)
+                        - output << content_tag("span", t.name, :id => unique_id)
+                      = raw output.join(", ")
+
+#index
+  %h2 Tag Index
+  - uniq_tags = @previous_tags.uniq
+  %ul
+    - for tag in uniq_tags.sort
+      %li
+        = tag
+        = raw @previous_tags.count(tag).times.map {|i| link_to "", "##{tag}-#{i+1}"}.join(", ")
+

@@ -1,0 +1,193 @@
+body {
+  font-family: "Minion Pro";
+  line-height: 1.4;
+  font-size: 11px;
+}
+
+#pre_front {
+  page: frontmatter;
+  h2 {
+    font-weight: bold;
+    font-size: 14px;
+    text-align: right;
+    margin-top: 7cm;
+    page-break-after: always;
+    text-transform: uppercase;
+  }
+}
+
+#colophon {
+  page-break-after: always;
+  margin-top:14cm;
+  font-size: 10px;
+  page: frontmatter;
+}
+
+#cover {
+  text-align: right;
+  page-break-after: always;
+  margin-top: 7cm;
+  page: frontmatter;
+  h1 {
+    font-size: 36px;
+    margin: 0 0 18px;
+  }
+  h2 {
+    font-size:24px;
+    margin: 0;
+  }
+  h3 {
+    font-size: 24px;
+    margin: 0;
+  }
+}
+
+.bookmarks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  .bookmark {
+    clear: both;
+    page-break-inside: avoid;
+    /*padding: 0 0 20px 0;*/
+    margin: 0 0 20px 0;
+    /*border-bottom: 1px solid #888;*/
+
+    .href {
+      font-style: italic;
+    }
+    .tags {
+      font-style: italic;
+      text-align: right;
+    }
+
+    h4 {
+      margin: 0;
+      font-size: 18px;
+    }
+  }
+  .bookmark:last-child {
+    border-bottom: none;
+  }
+}
+
+title {
+  string-set: title content();
+}
+
+#toc h2, #index h2 {
+  font-family: "Helvetica Neue-Ultra-Light", "Helvetica NeueUltralight", "Helvetica Neue", sans-serif;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 5px; 
+  text-align: center;
+  font-size: 24px;
+  margin: 0 0 20px;
+}
+
+#index h2 {
+  string-set: header content();
+}
+
+
+h2.month {
+  font-family: "Helvetica Neue-Ultra-Light", "Helvetica NeueUltralight", "Helvetica Neue", sans-serif;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 5px; 
+  text-align: center;
+  font-size: 24px;
+  margin-top: 7cm;
+  page-break-before: always;
+  page-break-after: always;
+  string-set: header content();
+  page: chapter_title;
+}
+h3.day {
+  font-family: "Helvetica Neue-Ultra-Light", "Helvetica NeueUltralight", "Helvetica Neue", sans-serif;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 5px; 
+  text-align: center;
+  font-size: 18px;
+  /*page-break-before: always;*/
+}
+
+.month_collection {
+  page-break-after: right;
+  page-break-before: right;
+}
+
+.day_container {
+  margin-bottom: 75px;
+}
+
+#toc {
+  page-break-before: right;
+  page-break-after:right;
+  page: frontmatter;
+}
+
+#toc ul.contents {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#toc ul.contents li {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 14px;
+  font-size: 14px;
+}
+#toc a {
+  color: #000;
+  text-decoration: none;
+}
+#toc a::after {
+  content: leader(' ') target-counter(attr(href), page);
+  font-style: normal;
+}
+
+#index ul {
+  -webkit-column-count: 2;
+  -webkit-column-gap: 1em;
+  -moz-column-count: 2;
+  -moz-column-gap: 1em;
+  column-count: 2;
+  column-gap: 1em;
+}
+
+#index ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#index ul li {
+  padding: 0;
+  margin: 0;
+}
+
+#index ul li a {
+  color: #000;
+  text-decoration: none;
+}
+
+#index ul li a::after {
+  /*content: target-counter(attr(href), page) ", ";*/
+  content: leader(' ') target-counters(attr(href), page, ", ");
+  font-style: normal;
+}
+
+.bookmark_itself {
+  margin-left: 85px;
+}
+
+.qr {
+  float: left; margin-right: 10px;
+  img {
+    width: 75px;
+    height: 75px;
+  }
+}
