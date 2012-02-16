@@ -5,7 +5,7 @@ task :default => :ingest
 task :environment do
   require 'rubygems'
   require 'sinatra'
-  require 'sinatra/sequel'
+  require 'sinatra/activerecord'
   require 'nokogiri'
   require 'bookmachine'
 end
