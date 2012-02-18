@@ -1,4 +1,5 @@
-== Bookmachine
+Bookmachine
+===========
 
 Bookmachine takes your Pinboard links and makes paperback books of them: one
 6"x9" book a year.
@@ -11,11 +12,12 @@ bundle install
 
 to set up all dependencies. You'll need Ruby/Bundler, obviously.
 
-You will also need PrinceXML. Get that from http://princexml.com and install
+You will also need PrinceXML. Get that from http://www.princexml.com/download/ and install
 the free version as per instructions. "prince" should be in your path before
 you begin to publish books.
 
-= Usage
+Usage
+-----
 
 Bookmachine has two components: a series of rake tasks, and a Sinatra webapp.
 
@@ -31,7 +33,8 @@ Bookmachine has two components: a series of rake tasks, and a Sinatra webapp.
   of all years. Alternatively, to make a single year, run "rake publish:year
   YEAR=199" (for example).
 
-= Modification
+Modification
+------------
 
 If you want to play with the format of the app, print.scss and application.scss
 are the SASS stylesheets that define how books look. There's lots of
@@ -39,13 +42,15 @@ Prince-specific formatting in there. (Why are they two sheets? I forget;
 I think application.scss was what I wrote on top of somebody else's print.scss.
 It's a bit scrappy).
 
-= Covers
+Covers
+------
 
 Covers are left as an exercise to the reader. I uploaded PNGs designed
 according to the dimensions Lulu gave me; you might just want to use Lulu's
 cover editor.
 
-= Printing
+Printing
+--------
 
 I used lulu.com to print my books; the PDFs are set up for the "American Trade
 Paperback" format. Other printers are available.
