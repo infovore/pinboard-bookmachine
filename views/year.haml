@@ -42,9 +42,9 @@
                   .qr
                     %img{:src => bookmark.qr_for_url}
                   .bookmark_itself
-                    %h4= bookmark.description
-                    .href= bookmark.href
-                    .desc= bookmark.extended
+                    %h4= h bookmark.description
+                    .href= h bookmark.href
+                    .desc= h bookmark.extended
                     .tags 
                       -output = []
                       - bookmark.tags.each do |t|

@@ -28,6 +28,9 @@ end
 # helpers
 
 helpers do
+  include Rack::Utils
+  alias_method :h, :escape_html
+  
   def format_date(date)
     date.strftime("%d %B %Y")
   end
