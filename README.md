@@ -4,7 +4,8 @@ Bookmachine
 Bookmachine takes your Pinboard links and makes paperback books of them: one
 6"x9" book a year.
 
-= Installation
+Installation
+------------
 
 Bookmachine is a Sinatra app. Check out the code and then run
 
