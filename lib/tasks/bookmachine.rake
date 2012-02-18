@@ -64,3 +64,25 @@ task :cache_years => :environment do
   end
 end
 
+namespace :publish do
+  desc "Render all books as PDFS to ./output/"
+  task :all => :environment do
+    years = Year.all
+    years.each do |y|
+      `prince http://localhost:9292/year/#{year} -o output/#{year}.pdf`
+    end
+  end
+
+  desc "Render a specific year"
+  task :year => :environment do
+    if ENV["YEAR"]
+      if Year.find_by_year_string(ENV["YEAR"])
+        `prince http://localhost:9292/year/#{ENV['YEAR']} -o output/#{ENV['YEAR']}.pdf`
+      else
+        puts "That year could not be found."
+      end
+    else
+      puts "Please specify a year eg YEAR=1999"
+    end
+  end
+end
