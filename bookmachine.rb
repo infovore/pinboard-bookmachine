@@ -8,6 +8,7 @@ set :database, 'sqlite://development.db'
 
 
 get '/' do
+  @years = Year.order("year_string")
   haml :index
 end
 
@@ -27,9 +28,6 @@ end
 # helpers
 
 helpers do
-  def link_to(*args, &block)
-  end
-
   def format_date(date)
     date.strftime("%d %B %Y")
   end
@@ -55,12 +53,20 @@ helpers do
 end
 
 # models
+class Year < ActiveRecord::Base
+  has_many :bookmarks
+end
 
 class Bookmark < ActiveRecord::Base
+  belongs_to :year
+
   def tags
     raw_tags.split(" ")
   end
-
+  
+  def year
+    bookmarked_at.strftime('%Y')
+  end
   def month
     bookmarked_at.strftime('%B')
   end

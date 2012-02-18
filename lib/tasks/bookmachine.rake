@@ -14,7 +14,7 @@ task :count_bookmarks => :environment do
   puts Bookmark.all.size
 end
 
-task :ingest => [:ingest_pinboard, :tidy_utm]
+task :ingest => [:ingest_pinboard, :tidy_utm, :cache_years]
 
 desc "Ingest all pinboard bookmarks"
 task :ingest_pinboard => :environment do
@@ -52,5 +52,15 @@ task :tidy_utm => :environment do
     end
   end
   puts     
+end
+
+desc "Cache years for bookmarks"
+task :cache_years => :environment do
+  bookmarks = Bookmark.all
+  bookmarks.each do |bookmark|
+    year = Year.find_or_create_by_year_string(bookmark.year)
+    bookmark.year = year
+    bookmark.save
+  end
 end
 
