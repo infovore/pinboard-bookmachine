@@ -2,10 +2,12 @@ require 'bundler/setup'
 require 'sinatra'
 require 'sinatra/activerecord'
 
+#thes two are the application broken out a bit.
+require 'helpers'
+require 'models'
+
 set :haml, :format => :html5
-
 set :database, 'sqlite://development.db'
-
 
 get '/' do
   @years = Year.order("year_string")
@@ -25,62 +27,3 @@ get '/year/:year' do
   haml :year, :layout => :print
 end
 
-# helpers
-
-helpers do
-  include Rack::Utils
-  alias_method :h, :escape_html
-  
-  def format_date(date)
-    date.strftime("%d %B %Y")
-  end
-
-  def mark_hash(string)
-    Digest::MD5.hexdigest(string)
-  end
-
-  def id_for_tag(tag_string, previous_tags_array)
-    if previous_tags_array.include?(tag_string)
-      previous_tags_array << tag_string
-      count = previous_tags_array.count(tag_string)
-      ["#{tag_string}-#{count}",previous_tags_array]
-    else
-      previous_tags_array << tag_string
-      ["#{tag_string}-1", previous_tags_array]
-    end
-  end
-
-end
-
-# models
-class Year < ActiveRecord::Base
-  has_many :bookmarks, :order => :bookmarked_at
-
-  def volume_number
-    year_string.to_i - 2004 + 1
-  end  
-end
-
-class Bookmark < ActiveRecord::Base
-  belongs_to :year
-
-  def tags
-    raw_tags.split(" ")
-  end
-  
-  def year
-    bookmarked_at.strftime('%Y')
-  end
-  def month
-    bookmarked_at.strftime('%B')
-  end
-
-  def day
-    bookmarked_at.strftime("%d")
-  end
-
-  def qr_for_url
-    "http://qrcode.kaywa.com/img.php?s=8&d=#{CGI.escape(href)}"
-  end
-  
-end
