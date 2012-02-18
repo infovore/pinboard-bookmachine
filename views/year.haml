@@ -1,5 +1,3 @@
-- content_for :title do
-  A Year of Links: #{@year}
 
 
 - @previous_tags = []
@@ -25,7 +23,8 @@
   %h2 Contents
   %ul.contents
     -@bookmarks_by_month.each do |month, collection|
-      %li= link_to month, "##{mark_hash(month)}"
+      %li
+        %a{:href => "##{mark_hash(month)}"}= month
 
 - @bookmarks_by_month.each do |month, collection|
   - if collection.any?
@@ -40,7 +39,8 @@
             %ul.bookmarks
               - for bookmark in day_collection
                 %li.bookmark
-                  .qr= image_tag(bookmark.qr_for_url)
+                  .qr
+                    %img{:src => bookmark.qr_for_url}
                   .bookmark_itself
                     %h4= bookmark.description
                     .href= bookmark.href
@@ -48,9 +48,9 @@
                     .tags 
                       -output = []
                       - bookmark.tags.each do |t|
-                        - unique_id, new_previous_tags = id_for_tag(t.name, @previous_tags)
-                        - output << content_tag("span", t.name, :id => unique_id)
-                      = raw output.join(", ")
+                        - unique_id, new_previous_tags = id_for_tag(t, @previous_tags)
+                        - output << "<span id='#{unique_id}'>#{t}</span>"
+                      = output.join(", ")
 
 #index
   %h2 Tag Index
@@ -59,5 +59,5 @@
     - for tag in uniq_tags.sort
       %li
         = tag
-        = raw @previous_tags.count(tag).times.map {|i| link_to "", "##{tag}-#{i+1}"}.join(", ")
+        = @previous_tags.count(tag).times.map {|i| "<a href='##{tag}-#{i+1}'></a>"}.join(", ")
 
