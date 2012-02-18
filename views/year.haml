@@ -3,7 +3,7 @@
 - @previous_tags = []
 
 #pre_front
-  %h2 A Year of Links: #{@year}
+  %h2 A Year of Links: #{@year.year_string}
 
 #colophon
   %p 
@@ -15,9 +15,9 @@
     http://pinboard.in/u:infovore
 
 #cover
-  %h1 A Year of Links: #{@year}
+  %h1 A Year of Links: #{@year.year_string}
   %h2 Tom Armitage
-  %h3 Volume #{volume_number_for_year(@year)}
+  %h3 Volume #{@year.volume_number}
 
 #toc
   %h2 Contents

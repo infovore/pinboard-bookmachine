@@ -17,11 +17,11 @@ get '/stylesheets/:stylesheet.css' do
 end
 
 get '/year/:year' do
-  @year = params[:year].to_i
-  @bookmarks = Bookmark.order("bookmarked_at").where("bookmarked_at > ?", DateTime.new(@year,1,1,0,0,0)).where("bookmarked_at < ?", DateTime.new(@year + 1,1,1,0,0,0))
+  @year = Year.where(:year_string => params[:year]).first
+  @bookmarks = @year.bookmarks 
   @bookmarks_by_month = @bookmarks.group_by(&:month)
 
-  @title = "A Year of Links: #{@year}"
+  @title = "A Year of Links: #{@year.year_string}"
   haml :year, :layout => :print
 end
 
@@ -47,14 +47,15 @@ helpers do
     end
   end
 
-  def volume_number_for_year(year)
-    year.to_i - 2004 + 1
-  end  
 end
 
 # models
 class Year < ActiveRecord::Base
-  has_many :bookmarks
+  has_many :bookmarks, :order => :bookmarked_at
+
+  def volume_number
+    year_string.to_i - 2004 + 1
+  end  
 end
 
 class Bookmark < ActiveRecord::Base
