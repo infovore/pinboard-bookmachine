@@ -9,9 +9,16 @@ Installation
 
 Bookmachine is a Sinatra app. Check out the code and then run
 
-bundle install
+    bundle install
 
 to set up all dependencies. You'll need Ruby/Bundler, obviously.
+
+You'll need to create the SQLite database, next:
+
+    rake db:migrate
+
+(Note that you might need to prefix all rake commands, and rackup, with `bundle
+exec`. Because bundler, alas.)
 
 You will also need PrinceXML. Get that from http://www.princexml.com/download/ and install
 the free version as per instructions. "prince" should be in your path before
@@ -22,10 +29,10 @@ Usage
 
 Bookmachine has two components: a series of rake tasks, and a Sinatra webapp.
 
-* First, place the output from https://api.pinboard.in/v1/posts/all into
-  data/pinboard_all.xml . You'll need to authenticate via HTTP Basic.
-* Then run "rake". This will ingest all your links into a database.
-* Now run "rackup". This will start a Sinatra app on port 9292.
+* First, place the output from `https://api.pinboard.in/v1/posts/all` into
+  `data/pinboard_all.xml` . You'll need to authenticate via HTTP Basic.
+* Then run `rake`. This will ingest all your links into a database.
+* Now run `rackup`. This will start a Sinatra app on port 9292.
 * If you visit localhost:9292 in a browser, you'll see all the books
   Bookmachine is going to make. Click on one to look at it in your browser.
   Note that the contents and index won't have page numbers - those will be
