@@ -67,3 +67,11 @@ Printing
 
 I used lulu.com to print my books; the PDFs are set up for the "American Trade
 Paperback" format. Other printers are available.
+
+Notes
+-----
+
+Much of the SCSS and Prince code is inspired by or taken directly from:
+
+* [This A List Apart article](http://www.alistapart.com/articles/boom)
+* [Felix Cohen's Bookler project](https://github.com/headshift/Bookler)
