@@ -64,7 +64,7 @@ namespace :ingest do
 end
 
 namespace :publish do
-  desc "Render all books as PDFS to app root."
+  desc "Render all books as PDFs to app root."
   task :all => :environment do
     years = Year.all
     years.each do |y|
