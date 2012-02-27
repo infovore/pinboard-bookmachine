@@ -68,6 +68,7 @@ namespace :publish do
   task :all => :environment do
     years = Year.all
     years.each do |y|
+      year = y['year_string']
       `prince http://localhost:9292/year/#{year} -o #{year}.pdf`
     end
   end
