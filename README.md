@@ -41,6 +41,11 @@ Bookmachine has two components: a series of rake tasks, and a Sinatra webapp.
   of all years. Alternatively, to make a single year, run `rake publish:year
   YEAR=1999`` (for example).
 
+If you look at the website, you won't see anything to do with pagination: not
+in the contents, the index, or in any headers. Do not worry: these elements
+will be added when Prince generates the book.
+
+
 Modification
 ------------
 
