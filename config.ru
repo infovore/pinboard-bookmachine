@@ -4,7 +4,7 @@ require "bundler/setup"
 require "sinatra"
 require "sinatra/activerecord"
 require "haml"
-require "bookmachine"
+require File.expand_path('../bookmachine', __FILE__)
 
 set :run, false
 set :raise_errors, true

@@ -7,7 +7,7 @@ task :environment do
   require 'sinatra'
   require 'sinatra/activerecord'
   require 'nokogiri'
-  require 'bookmachine'
+  require File.expand_path('../../../bookmachine', __FILE__)
 end
 
 namespace :ingest do

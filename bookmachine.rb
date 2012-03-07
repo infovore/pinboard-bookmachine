@@ -3,8 +3,8 @@ require 'sinatra'
 require 'sinatra/activerecord'
 
 #thes two are the application broken out a bit.
-require 'helpers'
-require 'models'
+require File.expand_path('../helpers', __FILE__)
+require File.expand_path('../models', __FILE__)
 
 set :haml, :format => :html5
 set :database, 'sqlite://development.db'
