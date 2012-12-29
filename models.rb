@@ -10,12 +10,17 @@ class Bookmark < ActiveRecord::Base
   belongs_to :year
 
   def tags
-    raw_tags.split(" ")
+    if raw_tags
+      raw_tags.split(" ")
+    else
+      []
+    end
   end
   
   def year
     bookmarked_at.strftime('%Y')
   end
+
   def month
     bookmarked_at.strftime('%B')
   end
