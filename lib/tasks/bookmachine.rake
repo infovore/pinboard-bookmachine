@@ -77,7 +77,7 @@ namespace :publish do
   task :year => :environment do
     if ENV["YEAR"]
       if Year.find_by_year_string(ENV["YEAR"])
-        `prince http://localhost:9292/year/#{ENV['YEAR']} -o #{ENV['YEAR']}.pdf`
+        `prince http://localhost:9292/year/#{ENV['YEAR']} -o output/#{ENV['YEAR']}.pdf`
       else
         puts "That year could not be found."
       end
