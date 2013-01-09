@@ -9,6 +9,10 @@ require File.expand_path('../models', __FILE__)
 set :haml, :format => :html5
 set :database, 'sqlite://development.db'
 
+AUTHOR_NAME = "Tom Armitage"
+PINBOARD_USERNAME = "infovore"
+BOOK_TITLE = "A Year of Links"
+
 get '/' do
   @years = Year.order("year_string")
   haml :index
@@ -23,7 +27,7 @@ get '/year/:year' do
   @bookmarks = @year.bookmarks 
   @bookmarks_by_month = @bookmarks.group_by(&:month)
 
-  @title = "A Year of Links: #{@year.year_string}"
+  @title = "#{BOOK_TITLE}: #{@year.year_string}"
   haml :year, :layout => :print
 end
 
