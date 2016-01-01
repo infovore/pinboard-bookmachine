@@ -31,13 +31,13 @@ Bookmachine has two components: a series of rake tasks, and a Sinatra webapp.
 
 * First, place the output from `https://api.pinboard.in/v1/posts/all` into
   `data/pinboard_all.xml` . You'll need to authenticate via HTTP Basic.
-* Then run `rake`. This will ingest all your links into a database.
-* Now run `rackup`. This will start a Sinatra app on port 9292.
+* Then run `bundle exec rake`. This will ingest all your links into a database.
+* Now run `bundle exec rackup`. This will start a Sinatra app on port 9292.
 * If you visit localhost:9292 in a browser, you'll see all the books
   Bookmachine is going to make. Click on one to look at it in your browser.
   Note that the contents and index won't have page numbers - those will be
   added by PrinceXML later.
-* With the webapp running, run `rake publish:all` from the shell to make PDFs
+* With the webapp running, run `bundle exec rake publish:all` from the shell to make PDFs
   of all years. Alternatively, to make a single year, run `rake publish:year
   YEAR=1999`` (for example).
 
