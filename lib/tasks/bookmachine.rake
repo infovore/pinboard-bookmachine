@@ -55,7 +55,7 @@ namespace :ingest do
   task :cache_years => :environment do
     bookmarks = Bookmark.all
     bookmarks.each do |bookmark|
-      year = Year.find_or_create_by_year_string(bookmark.year)
+      year = Year.find_or_create_by(year_string: bookmark.year)
       bookmark.year = year
       bookmark.save
     end
@@ -69,7 +69,7 @@ namespace :publish do
     years = Year.all
     years.each do |y|
       year = y.year_string
-      `prince http://localhost:9292/year/#{year} -o output/#{year}.pdf`
+      `prince http://localhost:9292/year/#{year} -o #{year}.pdf`
     end
   end
 
@@ -77,7 +77,7 @@ namespace :publish do
   task :year => :environment do
     if ENV["YEAR"]
       if Year.find_by_year_string(ENV["YEAR"])
-        `prince http://localhost:9292/year/#{ENV['YEAR']} -o output/#{ENV['YEAR']}.pdf`
+        `prince http://localhost:9292/year/#{ENV['YEAR']} -o #{ENV['YEAR']}.pdf`
       else
         puts "That year could not be found."
       end

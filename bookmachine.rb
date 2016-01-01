@@ -7,7 +7,8 @@ require File.expand_path('../helpers', __FILE__)
 require File.expand_path('../models', __FILE__)
 
 set :haml, :format => :html5
-set :database, 'sqlite://development.db'
+set :database, {adapter: "sqlite3", database: "development.db"}
+
 
 AUTHOR_NAME = "Tom Armitage"
 PINBOARD_USERNAME = "infovore"

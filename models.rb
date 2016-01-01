@@ -1,5 +1,5 @@
 class Year < ActiveRecord::Base
-  has_many :bookmarks, :order => :bookmarked_at
+  has_many :bookmarks, -> {order(:bookmarked_at)}
 
   def volume_number_based_on_start_year(start_year)
     year_string.to_i - start_year.to_i + 1
